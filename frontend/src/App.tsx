@@ -16,6 +16,8 @@ function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { isAuthenticated } = useSelector((state: RootState) => state.auth);
   console.log("hello from the sagar branch plus akash edited");
+  console.log("hello from sagar with the secure");
+  
   
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
