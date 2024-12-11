@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js';
 import transactionRoutes from './routes/transactionRoutes.js';
 const app = express();
 const port = 5172;
+console.log("Hello From Akash Branch");
 
 // Use express.json() to parse incoming JSON data
 app.use(express.json());
