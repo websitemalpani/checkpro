@@ -28,6 +28,7 @@ const upload = multer({ storage });
 // API TO STORE TRANSACTIONS
 router.post('/transactions', upload.array('images'), (req, res) => {
   const { status = [], description = [], u_id = [], q_id = [] } = req.body;
+  // console.log(status, description, u_id, q_id);
 
   // Ensure all fields are arrays
   const statuses = Array.isArray(status) ? status : [status];
@@ -115,6 +116,7 @@ router.post('/transactions', upload.array('images'), (req, res) => {
 //API TO GET TRANSACTIONS
 router.post('/get-transactions', (req, res) => {
   const { loc_id, date } = req.body;
+  //console.log(loc_id, date);
 
   if (!loc_id || !date) {
     return res.status(400).json({ message: "Location ID and date are required." });
@@ -132,6 +134,7 @@ router.post('/get-transactions', (req, res) => {
     }
 
     const userID = userResults[0].id;
+    console.log(userID);
 
     const sql2 = `SELECT CONCAT(b.fname, " ", b.lname) AS user_name,a.date,a.u_id,a.q_id,a.q_flag,a.description,c.question,
                          d.name AS location_name,a.image
@@ -160,9 +163,10 @@ router.post('/get-transactions', (req, res) => {
       res.status(200).json(transactions);
     });
   });
+
 });
 
-//API TO GET YET COMPLETED QUESTIONS
+//API TO GET YET COMPLETED QUESTIONS FOR INDICATOR QNO.
 router.get("/get-qcompleted/:u_id", (req, res) => {
   const { u_id } = req.params;
   let currentDate = new Date();
@@ -178,7 +182,7 @@ router.get("/get-qcompleted/:u_id", (req, res) => {
   });
 });
 
-//API TO GET THE ACTIVE QUESTIONS
+//API TO GET THE ACTIVE QUESTIONS FOR WEEK WISE QUESTIONS
 router.post('/get-questions', (req, res) => {
   const { week, u_role } = req.body;
   const role = `%${u_role}%`;
