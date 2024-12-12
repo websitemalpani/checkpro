@@ -31,12 +31,15 @@ router.get("/get-Users", (req, res) => {
 });
 
 //GET ALL QUESTIONS FOR MASTER
-router.get("/all-questions", (req, res) => {
-  const sql = `SELECT id,seq_id,question,status,week,u_role FROM questions`;
-  db.query(sql, (err, results) => {
+router.post("/all-questions", (req, res) => {
+  const { flag } = req.body;
+  const u_role = `%${flag}%`;
+
+  const sql = `SELECT id, seq_id, question, status, week, u_role FROM questions WHERE u_role LIKE ?`;
+  db.query(sql, [u_role], (err, results) => {
     if (err) {
       console.log(err);
-      res.status(500).json({ message: "Error to fetching questions" })
+      return res.status(500).json({ message: "Error fetching questions" });
     }
     res.status(200).json(results);
   });
