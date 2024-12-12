@@ -1,7 +1,6 @@
 import{ Suspense, lazy, useEffect, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 import ECommerce from './pages/Dashboard/ECommerce';
 import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
@@ -20,7 +19,7 @@ function App() {
   
   
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 500);
   }, []);
 
   return loading ? (
