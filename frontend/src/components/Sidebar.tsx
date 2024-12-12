@@ -17,7 +17,9 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated,user } = useSelector((state: RootState) => state.auth);
+  console.log(user,isAuthenticated);
+  
   const location = useLocation();
   const { pathname } = location;
 
@@ -66,6 +68,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
   const UserData: any = localStorage.getItem('userData');
   const roles: any = JSON.parse(UserData);
+ 
   
   
   
@@ -189,7 +192,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     
 
               {/* <!-- Menu Item Master --> */}
-              {roles?.userRole === "Admin"  && (
+              {(roles?.userRole === "Master" || roles?.userRole === "Admin") && (
               <SidebarLinkGroup
                 activeCondition={
                   pathname === '/' || pathname.includes('master')

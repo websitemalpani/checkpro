@@ -12,7 +12,6 @@ const Member = () => {
   const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
 
-
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
 };
@@ -42,6 +41,8 @@ const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
   //  if (currentItems.length === 0) {
   //    return <h1>no data found</h1>    
   //  }
+  const UserData: any = localStorage.getItem('userData');
+  const roles: any = JSON.parse(UserData);
   return (
     <>
       <Breadcrumb pageName="Member Table" />
@@ -75,9 +76,10 @@ const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
                 <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                   Status
                 </th>
-                <th className="py-4 px-4 font-medium text-black dark:text-white">
+                {roles.userRole === "Master" && (<th className="py-4 px-4 font-medium text-black dark:text-white">
                   Actions
-                </th>
+                </th>)}
+                
               </tr>
             </thead>
             <tbody>          
@@ -104,7 +106,7 @@ const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
                       {item.status}
                     </p>
                   </td>
-                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  {roles.userRole === "Master" && ( <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <span className="inline-flex justify-center gap-2">
                       <button className="hover:text-primary">
                         <CiEdit size={23} />
@@ -113,7 +115,8 @@ const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
                         <IoEyeOutline size={23} />
                       </button>
                     </span>
-                  </td>
+                  </td>)}
+                 
                 </tr>
               ))}
             </tbody>
