@@ -19,7 +19,8 @@ router.get("/get-Users", (req, res) => {
 
   const sql = `SELECT a.id,CONCAT(a.fname ," ",a.lname) AS name,a.email,a.mobile,a.status,b.name as loc_name
                FROM sgm_users AS a 
-               LEFT JOIN location as b ON a.loc_id = b.id`;
+               LEFT JOIN location as b ON a.loc_id = b.id
+               WHERE role !='Master'`;
 
   db.query(sql, (err, results) => {
     if (err) {
