@@ -84,10 +84,6 @@ const options: ApexOptions = {
   xaxis: {
     type: 'category',
     categories: [
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
       'Jan',
       'Feb',
       'Mar',
@@ -96,6 +92,11 @@ const options: ApexOptions = {
       'Jun',
       'Jul',
       'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+      
     ],
     axisBorder: {
       show: false,
@@ -126,13 +127,17 @@ const ChartOne: React.FC = () => {
   const [state, setState] = useState<ChartOneState>({
     series: [
       {
-        name: 'Product One',
+        name: 'Sangamner',
         data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
       },
 
       {
-        name: 'Product Two',
+        name: 'Nashik',
         data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+      },
+      {
+        name: 'Pathardi',
+        data: [40, 27, 46, 70, 85, 30, 63, 56, 52, 66, 39, 51],
       },
     ],
   });

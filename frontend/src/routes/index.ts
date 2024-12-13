@@ -1,4 +1,5 @@
 import { lazy } from 'react';
+const  Progress  = lazy(()=>import ('../pages/Dashboard/Progress'));
 const FAQ = lazy(()=>import('../pages/Master/FAQ'));
 const AdminFAQ = lazy(() => import('../pages/Transaction/AdminFAQ/AdminFAQ'));
 
@@ -108,6 +109,11 @@ const coreRoutes = [
     title: 'Logout',
     component: Logout,
   },
+  {
+    path:'/progress',
+    title:'Dashboard',
+    component:Progress
+  }
 ];
 
 const routes = [...coreRoutes];

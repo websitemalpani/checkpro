@@ -1,43 +1,46 @@
 import { Link, useParams } from 'react-router-dom';
 import Breadcrumb from '../../components/Breadcrumb';
-import Nodata from '../../images/FallBack.png'
+import Nodata from '../../images/FallBack.png';
 
 import { useState } from 'react';
 import { GetFilledChecklist } from '../../services/MasterApis';
 import { CiBookmarkCheck } from 'react-icons/ci';
 import FilledTable from '../../components/FilledTable';
 import { IoArrowBackSharp } from 'react-icons/io5';
+import { HiOutlineHandRaised } from 'react-icons/hi2';
+import QueryModal from './QueryModal';
 
 const FilledCheckList = () => {
   const { loc_id } = useParams();
   let currentDate = new Date().toISOString().slice(0, 10);
   let [year, month, day] = currentDate.split('-');
-  let formattedDate = `${day}-${month}-${year}`;
-  console.log(formattedDate);
+  let formattedDate = `${day}-${month}-${year}`;  
 
   const [date, setDate] = useState(formattedDate);
   const [data, setData] = useState([]);
   const [loading, setloading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   if (data === undefined || null) {
     return (
       <div className="flex-row justify-center items-center font-bold text-2xl">
-           <Link
-            to={"/"}
-              className="inline-flex items-center h-3 justify-center gap-2.5 rounded-full bg-bodydark text-black-2 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
-            >
-              <span>
-              <IoArrowBackSharp size={20} />
-              </span>
-              Go Back
-            </Link>
+        <Link
+          to={'/'}
+          className="inline-flex items-center h-3 justify-center gap-2.5 rounded-full bg-bodydark text-black-2 py-4 px-10 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10"
+        >
+          <span>
+            <IoArrowBackSharp size={20} />
+          </span>
+          Go Back
+        </Link>
         {/* <button className="inline-flex">Go Back</button> */}
-        <div className='flex justify-center animate-pulse mt-3'>
-        <img src={Nodata} className=" h-[400px] w-[400px] flex justify-center rounded-2xl"/>
+        <div className="flex justify-center animate-pulse mt-3">
+          <img
+            src={Nodata}
+            className=" h-[400px] w-[400px] flex justify-center rounded-2xl"
+          />
         </div>
       </div>
-
     );
-    
   }
   const handleSubmit = async () => {
     let body = {
@@ -131,7 +134,9 @@ const FilledCheckList = () => {
         </div>
       </div>
       {data?.length === 0 ? (
-        <h1 className="flex justify-center font-bold text-xl">No Data Found .</h1>
+        <h1 className="flex justify-center font-bold text-xl">
+          No Data Found .
+        </h1>
       ) : (
         <FilledTable
           TableHeaders={TableHeaders}
@@ -139,6 +144,14 @@ const FilledCheckList = () => {
           loading={loading}
         />
       )}
+      {data.length > 0 && (
+        <button onClick={()=>setShowModal(true)} className="h-10 mt-[2px] float-right inline-flex items-center justify-center gap-2.5 rounded-md bg-primary py-3 px-6 text-center font-medium text-white hover:bg-opacity-90">
+          <HiOutlineHandRaised size={20} />
+          Raise Query
+        </button>
+      )}
+
+      <QueryModal setShowModal = {setShowModal} showModal = {showModal}/>
     </>
   );
 };
