@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import {  FaRegEdit, FaRegQuestionCircle } from 'react-icons/fa';
 import { IoHomeOutline } from 'react-icons/io5';
+import { GrTransaction } from "react-icons/gr";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -315,7 +316,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                             : setSidebarExpanded(true);
                         }}
                       >
-                        <MdLeaderboard />
+                       <GrTransaction />
                         Transactions
                         <svg
                           className={`absolute right-4 top-1/2 -translate-y-1/2 fill-current ${

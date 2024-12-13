@@ -15,8 +15,7 @@ const Modal = ({ showModal, setShowModal, imageSrc }: ImageViewProp) => {
             <img
             src={imageSrc}
             alt="Large view"
-            loading="lazy"
-            
+            loading="lazy"            
             className="h-[500px] w-[500px] rounded-xl "
           />
         
