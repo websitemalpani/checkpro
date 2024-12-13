@@ -134,7 +134,7 @@ router.post('/get-transactions', (req, res) => {
     }
 
     const userID = userResults[0].id;
-    console.log(userID);
+    //console.log(userID);
 
     const sql2 = `SELECT CONCAT(b.fname, " ", b.lname) AS user_name,a.date,a.u_id,a.q_id,a.q_flag,a.description,c.question,
                          d.name AS location_name,a.image
@@ -163,7 +163,6 @@ router.post('/get-transactions', (req, res) => {
       res.status(200).json(transactions);
     });
   });
-
 });
 
 //API TO GET YET COMPLETED QUESTIONS FOR INDICATOR QNO.
