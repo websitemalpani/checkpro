@@ -7,11 +7,12 @@ const QueryModal = ({ showModal, setShowModal }: any) => {
     <div className="fixed rounded-2xl inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className=" p-4 rounded-2xl w-full max-w-lg">
         <div className="flex flex-col gap-9">
-          {/* <!-- Contact Form --> */}
+          {/* <!-- Contact Form --> */}          
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
             <div className="border-b border-stroke py-4 px-6.5 dark:border-strokedark">
               <h3 className="font-medium text-black dark:text-white inline-flex text-xl">
                 {' '}
+         
                 <FaUserEdit className="mr-1 mt-1.1" size={23} />
                 Send Description Regarding Answers
               </h3>

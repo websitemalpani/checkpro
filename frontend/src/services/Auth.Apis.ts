@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 
-export const BaseURl = 'http://192.168.179.23:5172';
+export const BaseURl = 'http://210.212.184.251:5172';
 export const GetLocations = async () => {
   try {
     const response = await axios.get(`${BaseURl}/locations`);
