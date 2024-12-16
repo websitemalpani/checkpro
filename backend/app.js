@@ -3,8 +3,10 @@ import cors from 'cors';
 import masterRoutes from './routes/masterRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import transactionRoutes from './routes/transactionRoutes.js';
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
-const port = 5172;
+const port = process.env.PORT || 5072;
 
 // Use express.json() to parse incoming JSON data
 app.use(express.json());
