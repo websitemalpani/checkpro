@@ -111,7 +111,7 @@ const Transaction = () => {
 
     try {
       const response = await axios.post(
-        'http://192.168.179.23:5172/transactions',
+        'http://210.212.184.251:5172/transactions',
         formData,
       );
       if (response.status === 200) {
